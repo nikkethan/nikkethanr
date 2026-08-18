@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikkethan Ramalingam — Backend Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0b0f16;
+    --bg-elevated: #121826;
+    --bg-card: #141c2b;
+    --border: #212b3d;
+    --border-soft: #1a2233;
+    --text-primary: #e8edf4;
+    --text-secondary: #8b96a8;
+    --text-tertiary: #5c6779;
+    --accent-mint: #4ddbb5;
+    --accent-blue: #5b9dff;
+    --accent-mint-dim: rgba(77,219,181,0.12);
+    --accent-blue-dim: rgba(91,157,255,0.12);
+    --radius: 10px;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+  html{ scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body{
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.35;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  ::selection{ background: var(--accent-mint-dim); color: var(--accent-mint); }
+
+  :focus-visible{
+    outline: 2px solid var(--accent-mint);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .wrap{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* NAV */
+  header.nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(11,15,22,0.75);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .nav-logo{
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent-mint);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span{ color: var(--text-tertiary); }
+  .nav-links{
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    font-size: 14px;
+    font-family: var(--font-mono);
+  }
+  .nav-links a{
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+    position: relative;
+  }
+  .nav-links a:hover{ color: var(--text-primary); }
+  .nav-links a::before{
+    content: "";
+    display: none;
+  }
+  @media (max-width: 700px){
+    .nav-links{ display: none; }
+  }
+
+  /* HERO */
+  .hero{
+    position: relative;
+    z-index: 1;
+    padding: 96px 0 80px;
+  }
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero{ padding: 56px 0 56px; }
+  }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-mint);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .eyebrow .dot{
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent-mint);
+    box-shadow: 0 0 0 3px var(--accent-mint-dim);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%, 100%{ opacity: 1; }
+    50%{ opacity: 0.45; }
+  }
+
+  .hero h1{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+  .hero h1 .accent{
+    background: linear-gradient(90deg, var(--accent-mint), var(--accent-blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-title{
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 22px;
+  }
+  .hero-title .sep{ color: var(--accent-blue); margin: 0 6px; }
+
+  .hero-summary{
+    color: var(--text-secondary);
+    font-size: 16.5px;
+    max-width: 46ch;
+    margin-bottom: 34px;
+  }
+
+  .btn-row{ display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s ease, transform 0.15s ease, background 0.2s ease;
+  }
+  .btn-primary{
+    background: var(--accent-mint);
+    color: #06110d;
+    border-color: var(--accent-mint);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 24px -8px var(--accent-mint-dim); }
+  .btn-ghost{
+    color: var(--text-primary);
+    background: var(--bg-card);
+  }
+  .btn-ghost:hover{
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    transform: translateY(-2px);
+  }
+
+  /* HERO PANEL - mock API response */
+  .panel{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -24px rgba(0,0,0,0.6);
+  }
+  .panel-bar{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+  }
+  .panel-dot{ width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+  .panel-route{
+    margin-left: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+  .panel-route .method{
+    color: var(--accent-mint);
+    font-weight: 600;
+  }
+  .panel-body{
+    padding: 20px 22px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    overflow-x: auto;
+  }
+  .panel-body .k{ color: #a7b3c4; }
+  .panel-body .s{ color: var(--accent-mint); }
+  .panel-body .n{ color: var(--accent-blue); }
+  .panel-body .b{ color: #d7a4ff; }
+  .panel-body .punct{ color: var(--text-tertiary); }
+
+  /* SECTION SHELL */
+  section{
+    position: relative;
+    z-index: 1;
+    padding: 88px 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .section-head{
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 42px;
+  }
+  .section-num{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-mint);
+  }
+  .section-title{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.9rem;
+    letter-spacing: -0.01em;
+  }
+  .section-title span{ color: var(--text-tertiary); font-weight: 400; }
+
+  /* ABOUT */
+  .about-body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 780px){ .about-body{ grid-template-columns: 1fr; } }
+  .about-text p{
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .about-text strong{ color: var(--text-primary); font-weight: 600; }
+  .stat-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    align-content: start;
+  }
+  .stat{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .stat-num{
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-mint);
+  }
+  .stat-label{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-top: 4px;
+  }
+
+  /* SKILLS */
+  .skills-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 700px){ .skills-grid{ grid-template-columns: 1fr; } }
+  .skill-group-title{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .skill-group-title::before{
+    content: "//";
+    color: var(--accent-blue);
+  }
+  .chip-row{ display: flex; flex-wrap: wrap; gap: 9px; }
+  .chip{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 7px 13px;
+    border-radius: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .chip:hover{
+    border-color: var(--accent-mint);
+    color: var(--accent-mint);
+    transform: translateY(-2px);
+  }
+  .chip.core{
+    background: var(--accent-mint-dim);
+    border-color: rgba(77,219,181,0.35);
+    color: var(--accent-mint);
+  }
+
+  /* EXPERIENCE TIMELINE */
+  .timeline{
+    position: relative;
+    padding-left: 28px;
+    border-left: 1px solid var(--border);
+  }
+  .job{
+    position: relative;
+    margin-bottom: 56px;
+  }
+  .job:last-child{ margin-bottom: 0; }
+  .job::before{
+    content: "";
+    position: absolute;
+    left: -33px;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent-mint);
+  }
+  .job-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .job-title{
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+  .job-dates{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+  }
+  .job-company{
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--accent-blue);
+    margin-bottom: 18px;
+  }
+  .job-company .client{ color: var(--text-tertiary); }
+
+  .subproject{
+    margin-bottom: 18px;
+  }
+  .subproject:last-child{ margin-bottom: 0; }
+  .subproject-title{
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .subproject ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .subproject li{
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    padding-left: 18px;
+    position: relative;
+  }
+  .subproject li::before{
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent-mint);
+    font-size: 12px;
+  }
+
+  /* AWARDS */
+  .awards{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+  }
+  @media (max-width: 700px){ .awards{ grid-template-columns: 1fr; } }
+  .award-card{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .award-icon{
+    color: var(--accent-mint);
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .award-name{ font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .award-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-tertiary); margin-top: 3px; }
+
+  /* EDUCATION */
+  .edu-card{
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .edu-degree{ font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; }
+  .edu-school{ color: var(--text-secondary); font-size: 14px; margin-top: 6px; }
+  .edu-dates{ font-family: var(--font-mono); font-size: 13px; color: var(--text-tertiary); }
+
+  .cert-row{
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer{
+    border-top: 1px solid var(--border-soft);
+    padding: 36px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-text{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-tertiary);
+  }
+  .footer-links{ display: flex; gap: 20px; font-family: var(--font-mono); font-size: 12.5px; }
+  .footer-links a{ color: var(--text-tertiary); transition: color 0.2s ease; }
+  .footer-links a:hover{ color: var(--accent-mint); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">nikkethan<span>.dev</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#education">education</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" style="border-top:none;">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> AVAILABLE FOR OPPORTUNITIES</div>
+        <h1>Nikkethan<br><span class="accent">Ramalingam</span></h1>
+        <div class="hero-title">Software Engineer <span class="sep">/</span> Java &amp; Quarkus <span class="sep">/</span> Banking &amp; FinTech</div>
+        <p class="hero-summary">Results-driven backend engineer with 4+ years architecting enterprise-grade banking systems — building resilient microservices, GraphQL &amp; REST APIs for Standard Chartered Bank and other FinTech clients.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="mailto:nikkethan.r@gmail.com">Email me</a>
+          <a class="btn btn-ghost" href="https://linkedin.com/in/nikkethanr" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn-ghost" href="#experience">View experience</a>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-bar">
+          <div class="panel-dot"></div><div class="panel-dot"></div><div class="panel-dot"></div>
+          <div class="panel-route"><span class="method">GET</span> /api/v1/engineer/nikkethan</div>
+        </div>
+        <div class="panel-body">
+<span class="punct">{</span><br>
+&nbsp;&nbsp;<span class="k">"role"</span><span class="punct">:</span> <span class="s">"Software Engineer"</span><span class="punct">,</span><br>
+&nbsp;&nbsp;<span class="k">"location"</span><span class="punct">:</span> <span class="s">"Coimbatore, India"</span><span class="punct">,</span><br>
+&nbsp;&nbsp;<span class="k">"experienceYears"</span><span class="punct">:</span> <span class="n">4</span><span class="punct">,</span><br>
+&nbsp;&nbsp;<span class="k">"stack"</span><span class="punct">:</span> <span class="punct">[</span><span class="s">"Java"</span><span class="punct">,</span> <span class="s">"Spring Boot"</span><span class="punct">,</span> <span class="s">"Quarkus"</span><span class="punct">]</span><span class="punct">,</span><br>
+&nbsp;&nbsp;<span class="k">"domain"</span><span class="punct">:</span> <span class="s">"Banking / FinTech"</span><span class="punct">,</span><br>
+&nbsp;&nbsp;<span class="k">"currentClient"</span><span class="punct">:</span> <span class="s">"Standard Chartered Bank"</span><span class="punct">,</span><br>
+&nbsp;&nbsp;<span class="k">"status"</span><span class="punct">:</span> <span class="b">"open_to_work"</span><span class="punct">,</span><br>
+&nbsp;&nbsp;<span class="k">"httpStatus"</span><span class="punct">:</span> <span class="n">200</span><br>
+<span class="punct">}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About <span>me</span></h2>
+    </div>
+    <div class="about-body">
+      <div class="about-text">
+        <p>I'm a <strong>results-driven Software Engineer</strong> with over four years of experience architecting enterprise-grade banking and FinTech solutions. My work centers on <strong>Java, Spring Boot, Quarkus, Microservices, GraphQL and REST APIs</strong>, delivered across leading banking clients including Standard Chartered Bank and Financial Software Systems.</p>
+        <p>I lean on AI-assisted development tools like <strong>Claude Code and GitHub Copilot</strong> to accelerate delivery and maintain high code quality in fast-paced enterprise environments — without cutting corners on reliability, which matters when the systems in question move real money.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><div class="stat-num">4+</div><div class="stat-label">YEARS EXPERIENCE</div></div>
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">BOLD MINDS AWARDS</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">BANKING &amp; FINTECH CLIENTS</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">CORE FRAMEWORKS</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Skills &amp; <span>tools</span></h2>
+    </div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-group-title">languages</div>
+        <div class="chip-row">
+          <span class="chip core">Java</span>
+          <span class="chip">SQL</span>
+          <span class="chip">Python (Basic)</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">frameworks &amp; libraries</div>
+        <div class="chip-row">
+          <span class="chip core">Spring Boot</span>
+          <span class="chip core">Quarkus</span>
+          <span class="chip">Microservices</span>
+          <span class="chip">REST APIs</span>
+          <span class="chip">GraphQL</span>
+          <span class="chip">Spring Data JPA</span>
+          <span class="chip">Hibernate / JPA</span>
+          <span class="chip">Panache ORM</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">databases</div>
+        <div class="chip-row">
+          <span class="chip">Oracle RDBMS</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">MySQL</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">cloud &amp; devops</div>
+        <div class="chip-row">
+          <span class="chip">AWS SCT</span>
+          <span class="chip">AWS DMS</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Azure DevOps</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">testing</div>
+        <div class="chip-row">
+          <span class="chip">JUnit</span>
+          <span class="chip">Unit Testing</span>
+          <span class="chip">Code Coverage Analysis</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">ai dev tools &amp; platforms</div>
+        <div class="chip-row">
+          <span class="chip">Claude Code</span>
+          <span class="chip">GitHub Copilot</span>
+          <span class="chip">Git</span>
+          <span class="chip">Bitbucket</span>
+          <span class="chip">Jira</span>
+          <span class="chip">DBeaver</span>
+          <span class="chip">IntelliJ IDEA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Experience</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">Consultant – Software Engineer</div>
+          <div class="job-dates">Apr 2025 — Present</div>
+        </div>
+        <div class="job-company">Capgemini · Bangalore, India <span class="client">— Client: Standard Chartered Bank</span></div>
+
+        <div class="subproject">
+          <div class="subproject-title">Resilience Catalogue Service (PEGA Modernization Program)</div>
+          <ul>
+            <li>Spearheading migration of legacy PEGA applications to Quarkus-based microservices architecture, supporting Standard Chartered Bank's digital transformation programme.</li>
+            <li>Developed backend services supporting cost-center hierarchy management and asset mapping across distributed banking operations.</li>
+            <li>Designed and implemented GraphQL and REST APIs following enterprise-standard architecture patterns.</li>
+            <li>Leveraged Panache ORM with Oracle RDBMS for efficient persistence, data access, and query optimization.</li>
+            <li>Utilised Claude Code and GitHub Copilot to accelerate boilerplate generation and code reviews, improving sprint velocity.</li>
+          </ul>
+        </div>
+
+        <div class="subproject">
+          <div class="subproject-title">EProduct Platform</div>
+          <ul>
+            <li>Built workflow-driven backend applications supporting product launch, access governance, and enterprise onboarding processes.</li>
+            <li>Designed RESTful and GraphQL APIs using Quarkus framework on Oracle RDBMS.</li>
+            <li>Optimized database operations, reducing query latency and improving overall application throughput.</li>
+            <li>Collaborated with cross-functional teams to align backend services with banking domain governance requirements.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">Software Engineer</div>
+          <div class="job-dates">Jun 2021 — Mar 2025</div>
+        </div>
+        <div class="job-company">Expleo Group · Mumbai, India <span class="client">— Client: Financial Software Systems</span></div>
+
+        <div class="subproject">
+          <div class="subproject-title">FILEX — Database Migration Support</div>
+          <ul>
+            <li>Assisted in Oracle-to-PostgreSQL migration activities using AWS SCT and AWS DMS, including schema mapping and data validation.</li>
+            <li>Supported migration testing and coordinated with the team on issue resolution to ensure data consistency across environments.</li>
+          </ul>
+        </div>
+
+        <div class="subproject">
+          <div class="subproject-title">ATM Monitoring &amp; Automated Ticketing System</div>
+          <ul>
+            <li>Developed Java / Spring Boot backend services for real-time health monitoring of 50,000+ ATMs nationwide.</li>
+            <li>Implemented automated alert generation, incident ticketing, and dashboard reporting — reduced manual intervention by 40%.</li>
+            <li>Integrated AI-assisted incident identification workflows, improving issue resolution efficiency by 50%.</li>
+            <li>Built configurable threshold-based alerting engine supporting SLA compliance and proactive maintenance.</li>
+          </ul>
+        </div>
+
+        <div class="subproject">
+          <div class="subproject-title">Enterprise Payment Processing Platform (AEPS, Recharge, eKYC)</div>
+          <ul>
+            <li>Contributed to REST-based payment processing services covering AEPS, mobile recharges, and eKYC workflows.</li>
+            <li>Supported systems processing 100,000+ transactions per month with high availability and fault tolerance.</li>
+            <li>Improved transaction throughput and platform reliability through API optimization and caching strategies.</li>
+            <li>Developed and maintained payment workflow APIs ensuring compliance with banking and regulatory standards.</li>
+          </ul>
+        </div>
+
+        <div class="subproject">
+          <div class="subproject-title">Quality Assurance &amp; Code Reliability</div>
+          <ul>
+            <li>Authored JUnit test suites to achieve and maintain target code coverage across multiple microservices.</li>
+            <li>Participated in peer code reviews, defect triage, root cause analysis, and production support activities.</li>
+            <li>Adopted GitHub Copilot to assist with test case generation and reduce repetitive coding overhead.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-head" style="margin-top:56px;">
+      <span class="section-num">—</span>
+      <h2 class="section-title" style="font-size:1.3rem;">Most proud <span>of</span></h2>
+    </div>
+    <div class="awards">
+      <div class="award-card">
+        <div class="award-icon">★</div>
+        <div><div class="award-name">Expleo Bold Minds Global Impact — Individual</div><div class="award-date">Q1 2024</div></div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">★</div>
+        <div><div class="award-name">Expleo Bold Minds Regional Impact — Individual</div><div class="award-date">Q2 2022</div></div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">★</div>
+        <div><div class="award-name">Expleo Bold Minds Regional Impact — Team</div><div class="award-date">Q4 2023</div></div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">★</div>
+        <div><div class="award-name">Expleo Bold Minds — Team</div><div class="award-date">Q1 2023</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="wrap">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">Bachelor of Engineering — Electronics and Communication Engineering</div>
+        <div class="edu-school">Kongu Engineering College, Coimbatore</div>
+        <div class="cert-row">
+          <span class="chip">Python for Data Science — IBM</span>
+          <span class="chip">Introduction to Data Science — Coursera</span>
+        </div>
+      </div>
+      <div class="edu-dates">2017 — 2021</div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="footer-inner">
+    <div class="footer-text">© 2026 Nikkethan Ramalingam. Built with care.</div>
+    <div class="footer-links">
+      <a href="mailto:nikkethan.r@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/nikkethanr" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="tel:+916380635683">Phone</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
