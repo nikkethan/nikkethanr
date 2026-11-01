@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nikkethan Ramalingam — Backend Software Engineer</title>
+<meta name="description" content="Portfolio of Nikkethan Ramalingam, a backend software engineer specializing in Java, Spring Boot, Quarkus, and banking technology.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -261,7 +262,7 @@
     position: relative;
     z-index: 1;
     padding: 88px 0;
-    border-top: 1px solid var(--border-soft);
+    border-top: 0;
   }
   .section-head{
     display: flex;
@@ -492,7 +493,7 @@
 
   /* FOOTER */
   footer{
-    border-top: 1px solid var(--border-soft);
+    border-top: 0;
     padding: 36px 0;
     position: relative;
     z-index: 1;
@@ -512,6 +513,157 @@
   .footer-links{ display: flex; gap: 20px; font-family: var(--font-mono); font-size: 12.5px; }
   .footer-links a{ color: var(--text-tertiary); transition: color 0.2s ease; }
   .footer-links a:hover{ color: var(--accent-mint); }
+
+  /* CLEAN, PROFESSIONAL OVERRIDES */
+  :root{
+    --bg: #f7f8fa;
+    --bg-elevated: #ffffff;
+    --bg-card: #ffffff;
+    --border: #dfe4ea;
+    --border-soft: #e9edf1;
+    --text-primary: #18212b;
+    --text-secondary: #5f6b78;
+    --text-tertiary: #87919c;
+    --accent-mint: #147d62;
+    --accent-blue: #2c6096;
+    --accent-mint-dim: rgba(20,125,98,0.10);
+    --accent-blue-dim: rgba(44,96,150,0.10);
+  }
+
+  html[data-theme="dark"]{
+    --bg: #101318;
+    --bg-elevated: #171c24;
+    --bg-card: #171c24;
+    --border: #2b3440;
+    --border-soft: #222a34;
+    --text-primary: #edf1f5;
+    --text-secondary: #aab3bf;
+    --text-tertiary: #7c8795;
+    --accent-mint: #7dd3b2;
+    --accent-blue: #91b9e8;
+    --accent-mint-dim: rgba(125,211,178,0.10);
+    --accent-blue-dim: rgba(145,185,232,0.10);
+  }
+
+  body::before{ display: none; }
+  body{ background: var(--bg); transition: background .2s ease, color .2s ease; }
+  .wrap, .nav-inner{ max-width: 1080px; }
+  header.nav{ background: color-mix(in srgb, var(--bg) 92%, transparent); border-bottom-color: var(--border); }
+  .nav-inner{ padding-top: 15px; padding-bottom: 15px; gap: 24px; }
+  .nav-logo{ color: var(--text-primary); font-weight: 600; }
+  .nav-logo span{ color: var(--accent-mint); }
+  .nav-links{ gap: 24px; }
+  .nav-links a{ font-family: var(--font-body); font-size: 13px; }
+  .nav-links a:hover{ color: var(--accent-mint); }
+  .theme-toggle{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-left: auto;
+    padding: 7px 10px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font: 500 12px var(--font-body);
+    cursor: pointer;
+    transition: border-color .2s ease, color .2s ease, background .2s ease;
+  }
+  .theme-toggle:hover{ color: var(--accent-mint); border-color: var(--accent-mint); }
+  .theme-icon{ color: var(--accent-mint); font-size: 15px; line-height: 1; }
+
+  .hero{ padding: 112px 0 104px; }
+  .hero-grid{ grid-template-columns: minmax(0, 1fr) minmax(330px, .78fr); gap: 80px; }
+  .hero .eyebrow{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0;
+    margin: 0 0 28px;
+    border: 0;
+    background: transparent;
+    font-size: 11px;
+    letter-spacing: .12em;
+  }
+  .eyebrow .dot{ animation: none; }
+  .hero h1{ font-size: clamp(2.8rem, 6vw, 4.6rem); letter-spacing: -.045em; margin-bottom: 20px; }
+  .hero h1 .accent{ background: none; color: var(--accent-mint); }
+  .hero-title{ font-size: 14px; }
+  .hero-summary{ color: var(--text-secondary); font-size: 17px; line-height: 1.75; max-width: 54ch; }
+  .btn{ border-radius: 6px; padding: 10px 17px; }
+  .btn-primary{ color: #0b1712; }
+  .btn-primary:hover, .btn-ghost:hover{ transform: translateY(-1px); }
+  .btn-ghost{ background: transparent; }
+
+  .panel{ border-radius: 7px; box-shadow: 0 16px 35px -28px rgba(25,40,55,.45); }
+  .panel-bar{ padding: 11px 14px; }
+  .panel-body{ padding: 18px 20px; font-size: 12px; line-height: 1.75; }
+
+  section{ padding: 96px 0; border-top: 0; }
+  .section-head{ margin-bottom: 36px; }
+  .section-num{ font-size: 11px; letter-spacing: .08em; }
+  .section-title{ font-size: 1.65rem; letter-spacing: -.025em; }
+  .section-title span{ color: var(--text-secondary); }
+  .about-body{ gap: 72px; }
+  .about-text p{ line-height: 1.8; }
+  .stat{ border-radius: 7px; padding: 18px; background: transparent; }
+  .stat-num{ font-size: 1.65rem; }
+  .stat-label{ font-size: 10px; letter-spacing: .04em; }
+
+  .skills-grid{ gap: 36px 52px; }
+  .skill-group-title{ font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+  .chip{ border-radius: 5px; padding: 6px 11px; font-size: 12px; }
+  .chip:hover{ transform: none; }
+
+  .timeline{ padding-left: 32px; }
+  .job{ margin-bottom: 64px; }
+  .job::before{ left: -37px; }
+  .job-title{ font-size: 1.18rem; }
+  .job-company{ margin-bottom: 20px; }
+  .subproject-title{ font-size: 14px; }
+  .subproject li{ line-height: 1.65; }
+
+  .award-card, .edu-card{ border-radius: 7px; }
+  footer{
+    margin-top: 48px;
+    padding: 0 0 34px;
+    border-top: 0;
+  }
+  .footer-inner{ min-height: 28px; padding-top: 24px; }
+  .footer-text, .footer-links{ font-size: 12px; }
+  .footer-links{ gap: 22px; }
+  .footer-links a{ color: var(--text-secondary); }
+
+  @media (max-width: 860px){
+    .hero{ padding: 72px 0 64px; }
+    .hero-grid{ gap: 44px; }
+  }
+  @media (max-width: 700px){
+    .wrap{ padding-left: 22px; padding-right: 22px; }
+    .nav-inner{ padding-left: 22px; padding-right: 22px; }
+    .theme-label{ display: none; }
+    section{ padding: 68px 0; }
+    .hero h1{ font-size: clamp(2.6rem, 14vw, 4rem); }
+    .hero-title{ line-height: 1.8; }
+    .hero-summary{ font-size: 16px; }
+    .about-body{ gap: 30px; }
+    .job-head{ display: block; }
+    .job-dates{ display: block; margin-top: 6px; }
+    footer{ margin-top: 36px; padding-bottom: 28px; }
+    .footer-inner{ padding-top: 20px; }
+  }
+
+  @media print{
+    :root{ --bg: #fff; --bg-card: #fff; --bg-elevated: #fff; --border: #d7dce3; --border-soft: #e5e7eb; --text-primary: #111827; --text-secondary: #4b5563; --text-tertiary: #6b7280; --accent-mint: #176b50; --accent-blue: #24558f; }
+    body{ background: #fff; color: #111827; }
+    header.nav{ position: static; background: #fff; }
+    .nav-links, .btn-row, .panel{ display: none; }
+    .hero, section{ padding: 34px 0; }
+    section{ break-inside: avoid; }
+    .hero h1 .accent{ color: #176b50; }
+    .stat, .award-card, .edu-card{ border-color: #d7dce3; }
+    footer{ padding: 20px 0; }
+  }
 </style>
 </head>
 <body>
@@ -525,6 +677,10 @@
       <li><a href="#experience">experience</a></li>
       <li><a href="#education">education</a></li>
     </ul>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+      <span class="theme-icon" aria-hidden="true">◐</span>
+      <span class="theme-label">Dark mode</span>
+    </button>
   </div>
 </header>
 
@@ -535,7 +691,7 @@
         <div class="eyebrow"><span class="dot"></span> AVAILABLE FOR OPPORTUNITIES</div>
         <h1>Nikkethan<br><span class="accent">Ramalingam</span></h1>
         <div class="hero-title">Software Engineer <span class="sep">/</span> Java &amp; Quarkus <span class="sep">/</span> Banking &amp; FinTech</div>
-        <p class="hero-summary">Results-driven backend engineer with 4+ years architecting enterprise-grade banking systems — building resilient microservices, GraphQL &amp; REST APIs for Standard Chartered Bank and other FinTech clients.</p>
+        <p class="hero-summary">Results-driven backend engineer with 5+ years architecting enterprise-grade banking systems — building resilient microservices, GraphQL &amp; REST APIs for Standard Chartered Bank and other FinTech clients.</p>
         <div class="btn-row">
           <a class="btn btn-primary" href="mailto:nikkethan.r@gmail.com">Email me</a>
           <a class="btn btn-ghost" href="https://linkedin.com/in/nikkethanr" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -551,7 +707,8 @@
 <span class="punct">{</span><br>
 &nbsp;&nbsp;<span class="k">"role"</span><span class="punct">:</span> <span class="s">"Software Engineer"</span><span class="punct">,</span><br>
 &nbsp;&nbsp;<span class="k">"location"</span><span class="punct">:</span> <span class="s">"Coimbatore, India"</span><span class="punct">,</span><br>
-&nbsp;&nbsp;<span class="k">"experienceYears"</span><span class="punct">:</span> <span class="n">4</span><span class="punct">,</span><br>
+&nbsp;&nbsp;<span class="k">"experienceYears"</span><span class="punct">:</span> <span class="n">5</span><span class="punct">,</span><br>
+&nbsp;&nbsp;<span class="k">"currentCompany"</span><span class="punct">:</span> <span class="s">"Capgemini"</span><span class="punct">,</span><br>
 &nbsp;&nbsp;<span class="k">"stack"</span><span class="punct">:</span> <span class="punct">[</span><span class="s">"Java"</span><span class="punct">,</span> <span class="s">"Spring Boot"</span><span class="punct">,</span> <span class="s">"Quarkus"</span><span class="punct">]</span><span class="punct">,</span><br>
 &nbsp;&nbsp;<span class="k">"domain"</span><span class="punct">:</span> <span class="s">"Banking / FinTech"</span><span class="punct">,</span><br>
 &nbsp;&nbsp;<span class="k">"currentClient"</span><span class="punct">:</span> <span class="s">"Standard Chartered Bank"</span><span class="punct">,</span><br>
@@ -570,11 +727,11 @@
     </div>
     <div class="about-body">
       <div class="about-text">
-        <p>I'm a <strong>results-driven Software Engineer</strong> with over four years of experience architecting enterprise-grade banking and FinTech solutions. My work centers on <strong>Java, Spring Boot, Quarkus, Microservices, GraphQL and REST APIs</strong>, delivered across leading banking clients including Standard Chartered Bank and Financial Software Systems.</p>
+        <p>I'm a <strong>results-driven Software Engineer</strong> with over five years of experience architecting enterprise-grade banking and FinTech solutions. My work centers on <strong>Java, Spring Boot, Quarkus, Microservices, GraphQL and REST APIs</strong>, delivered across leading banking clients including Standard Chartered Bank and Financial Software Systems.</p>
         <p>I lean on AI-assisted development tools like <strong>Claude Code and GitHub Copilot</strong> to accelerate delivery and maintain high code quality in fast-paced enterprise environments — without cutting corners on reliability, which matters when the systems in question move real money.</p>
       </div>
       <div class="stat-grid">
-        <div class="stat"><div class="stat-num">4+</div><div class="stat-label">YEARS EXPERIENCE</div></div>
+        <div class="stat"><div class="stat-num">5+</div><div class="stat-label">YEARS EXPERIENCE</div></div>
         <div class="stat"><div class="stat-num">4</div><div class="stat-label">BOLD MINDS AWARDS</div></div>
         <div class="stat"><div class="stat-num">2</div><div class="stat-label">BANKING &amp; FINTECH CLIENTS</div></div>
         <div class="stat"><div class="stat-num">3</div><div class="stat-label">CORE FRAMEWORKS</div></div>
@@ -777,7 +934,7 @@
 
 <footer class="wrap">
   <div class="footer-inner">
-    <div class="footer-text">© 2026 Nikkethan Ramalingam. Built with care.</div>
+    <div class="footer-text">© 2026 Nikkethan Ramalingam.</div>
     <div class="footer-links">
       <a href="mailto:nikkethan.r@gmail.com">Email</a>
       <a href="https://linkedin.com/in/nikkethanr" target="_blank" rel="noopener">LinkedIn</a>
@@ -785,6 +942,30 @@
     </div>
   </div>
 </footer>
+
+<script>
+  const themeToggle = document.querySelector('.theme-toggle');
+  const savedTheme = localStorage.getItem('portfolio-theme');
+  const initialTheme = savedTheme || 'light';
+
+  document.documentElement.dataset.theme = initialTheme;
+
+  function updateThemeButton() {
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    themeToggle.setAttribute('aria-pressed', String(isDark));
+    themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    themeToggle.querySelector('.theme-label').textContent = isDark ? 'Light mode' : 'Dark mode';
+    themeToggle.querySelector('.theme-icon').textContent = isDark ? '☼' : '◐';
+  }
+
+  updateThemeButton();
+  themeToggle.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nextTheme;
+    localStorage.setItem('portfolio-theme', nextTheme);
+    updateThemeButton();
+  });
+</script>
 
 </body>
 </html>
