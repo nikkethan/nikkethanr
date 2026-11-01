@@ -599,11 +599,59 @@
   .panel-bar{ padding: 11px 14px; }
   .panel-body{ padding: 18px 20px; font-size: 12px; line-height: 1.75; }
 
+  .profile-card{
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-card);
+    box-shadow: 0 18px 45px -34px rgba(25,40,55,.45);
+  }
+  .profile-card-top, .work-card-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .profile-kicker, .work-card-top{
+    color: var(--text-tertiary);
+    font: 600 10px var(--font-mono);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .profile-status{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--accent-mint);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .status-dot{ width: 7px; height: 7px; border-radius: 50%; background: var(--accent-mint); }
+  .profile-main{
+    margin: 28px 0 26px;
+    color: var(--text-primary);
+    font: 600 1.35rem/1.35 var(--font-display);
+    letter-spacing: -.02em;
+  }
+  .profile-details{ display: grid; gap: 0; border-top: 1px solid var(--border); }
+  .profile-details div{ display: flex; justify-content: space-between; gap: 20px; padding: 13px 0; border-bottom: 1px solid var(--border); }
+  .profile-details dt{ color: var(--text-tertiary); font-size: 12px; }
+  .profile-details dd{ color: var(--text-primary); font-size: 12px; text-align: right; }
+
+  .work-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .work-card{ padding: 23px; border: 1px solid var(--border); border-radius: 9px; background: var(--bg-card); }
+  .work-card-top{ font-size: 10px; letter-spacing: .02em; text-transform: none; }
+  .work-card-top span:first-child{ color: var(--accent-mint); font-size: 12px; }
+  .work-card h3{ margin: 30px 0 11px; color: var(--text-primary); font: 600 1.1rem var(--font-display); }
+  .work-card p{ min-height: 74px; color: var(--text-secondary); font-size: 13px; line-height: 1.7; }
+  .work-result{ margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border); color: var(--accent-mint); font-size: 12px; line-height: 1.55; }
+
   section{ padding: 96px 0; border-top: 0; }
   .section-head{ margin-bottom: 36px; }
   .section-num{ font-size: 11px; letter-spacing: .08em; }
   .section-title{ font-size: 1.65rem; letter-spacing: -.025em; }
   .section-title span{ color: var(--text-secondary); }
+  .section-intro{ margin: -18px 0 30px; color: var(--text-secondary); font-size: 14px; }
   .about-body{ gap: 72px; }
   .about-text p{ line-height: 1.8; }
   .stat{ border-radius: 7px; padding: 18px; background: transparent; }
@@ -636,7 +684,7 @@
 
   @media (max-width: 860px){
     .hero{ padding: 72px 0 64px; }
-    .hero-grid{ gap: 44px; }
+    .hero-grid{ grid-template-columns: minmax(0, 1fr); gap: 44px; }
   }
   @media (max-width: 700px){
     .wrap{ padding-left: 22px; padding-right: 22px; }
@@ -646,6 +694,15 @@
     .hero h1{ font-size: clamp(2.6rem, 14vw, 4rem); }
     .hero-title{ line-height: 1.8; }
     .hero-summary{ font-size: 16px; }
+    .profile-card{ padding: 22px; }
+    .profile-main{ font-size: 1.2rem; }
+    .profile-card-top{ align-items: flex-start; flex-direction: column; gap: 10px; }
+    .profile-details div{ display: block; }
+    .profile-details dd{ margin-top: 4px; text-align: left; }
+    .work-grid{ grid-template-columns: 1fr; }
+    .work-card p{ min-height: auto; }
+    .work-card-top{ align-items: flex-start; flex-direction: column; gap: 6px; }
+    .footer-inner{ align-items: flex-start; flex-direction: column; }
     .about-body{ gap: 30px; }
     .job-head{ display: block; }
     .job-dates{ display: block; margin-top: 6px; }
@@ -674,6 +731,7 @@
     <ul class="nav-links">
       <li><a href="#about">about</a></li>
       <li><a href="#skills">skills</a></li>
+      <li><a href="#work">work</a></li>
       <li><a href="#experience">experience</a></li>
       <li><a href="#education">education</a></li>
     </ul>
@@ -698,24 +756,18 @@
           <a class="btn btn-ghost" href="#experience">View experience</a>
         </div>
       </div>
-      <div class="panel">
-        <div class="panel-bar">
-          <div class="panel-dot"></div><div class="panel-dot"></div><div class="panel-dot"></div>
-          <div class="panel-route"><span class="method">GET</span> /api/v1/engineer/nikkethan</div>
+      <div class="profile-card">
+        <div class="profile-card-top">
+          <span class="profile-kicker">AT A GLANCE</span>
+          <span class="profile-status"><span class="status-dot"></span> Open to opportunities</span>
         </div>
-        <div class="panel-body">
-<span class="punct">{</span><br>
-&nbsp;&nbsp;<span class="k">"role"</span><span class="punct">:</span> <span class="s">"Software Engineer"</span><span class="punct">,</span><br>
-&nbsp;&nbsp;<span class="k">"location"</span><span class="punct">:</span> <span class="s">"Coimbatore, India"</span><span class="punct">,</span><br>
-&nbsp;&nbsp;<span class="k">"experienceYears"</span><span class="punct">:</span> <span class="n">5</span><span class="punct">,</span><br>
-&nbsp;&nbsp;<span class="k">"currentCompany"</span><span class="punct">:</span> <span class="s">"Capgemini"</span><span class="punct">,</span><br>
-&nbsp;&nbsp;<span class="k">"stack"</span><span class="punct">:</span> <span class="punct">[</span><span class="s">"Java"</span><span class="punct">,</span> <span class="s">"Spring Boot"</span><span class="punct">,</span> <span class="s">"Quarkus"</span><span class="punct">]</span><span class="punct">,</span><br>
-&nbsp;&nbsp;<span class="k">"domain"</span><span class="punct">:</span> <span class="s">"Banking / FinTech"</span><span class="punct">,</span><br>
-&nbsp;&nbsp;<span class="k">"currentClient"</span><span class="punct">:</span> <span class="s">"Standard Chartered Bank"</span><span class="punct">,</span><br>
-&nbsp;&nbsp;<span class="k">"status"</span><span class="punct">:</span> <span class="b">"open_to_work"</span><span class="punct">,</span><br>
-&nbsp;&nbsp;<span class="k">"httpStatus"</span><span class="punct">:</span> <span class="n">200</span><br>
-<span class="punct">}</span>
-        </div>
+        <div class="profile-main">Backend software engineer building dependable systems for banking and FinTech.</div>
+        <dl class="profile-details">
+          <div><dt>Based in</dt><dd>Bangalore, India</dd></div>
+          <div><dt>Experience</dt><dd>5+ years</dd></div>
+          <div><dt>Current company</dt><dd>Capgemini</dd></div>
+          <div><dt>Core stack</dt><dd>Java · Spring Boot · Quarkus</dd></div>
+        </dl>
       </div>
     </div>
   </section>
@@ -806,9 +858,37 @@
     </div>
   </section>
 
-  <section id="experience" class="wrap">
+  <section id="work" class="wrap">
     <div class="section-head">
       <span class="section-num">03</span>
+      <h2 class="section-title">Professional <span>work</span></h2>
+    </div>
+    <p class="section-intro">Selected client projects delivered as part of my roles at Capgemini and Expleo.</p>
+    <div class="work-grid">
+      <article class="work-card">
+        <div class="work-card-top"><span>01</span><span>Quarkus · GraphQL · Oracle</span></div>
+        <h3>Resilience Catalogue Service</h3>
+        <p>Moving core capabilities from legacy PEGA applications into improved Java, Spring Boot, and Quarkus services for distributed banking operations.</p>
+        <div class="work-result">Cost-center hierarchy and asset mapping across enterprise operations.</div>
+      </article>
+      <article class="work-card">
+        <div class="work-card-top"><span>02</span><span>Java · Spring Boot · AWS</span></div>
+        <h3>ATM Monitoring Platform</h3>
+        <p>Real-time health monitoring and automated ticketing for a nationwide network of 50,000+ ATMs.</p>
+        <div class="work-result">Reduced manual intervention by 40% through automated alerting.</div>
+      </article>
+      <article class="work-card">
+        <div class="work-card-top"><span>03</span><span>REST APIs · Payments · eKYC</span></div>
+        <h3>Payment Processing Platform</h3>
+        <p>Backend services supporting AEPS, mobile recharge, and eKYC workflows at production scale.</p>
+        <div class="work-result">Supported 100,000+ transactions per month with high availability.</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="section-head">
+      <span class="section-num">04</span>
       <h2 class="section-title">Experience</h2>
     </div>
     <div class="timeline">
@@ -821,9 +901,9 @@
         <div class="job-company">Capgemini · Bangalore, India <span class="client">— Client: Standard Chartered Bank</span></div>
 
         <div class="subproject">
-          <div class="subproject-title">Resilience Catalogue Service (PEGA Modernization Program)</div>
+          <div class="subproject-title">Resilience Catalogue Service — PEGA to Java Platform Migration</div>
           <ul>
-            <li>Spearheading migration of legacy PEGA applications to Quarkus-based microservices architecture, supporting Standard Chartered Bank's digital transformation programme.</li>
+            <li>Spearheading the migration from legacy PEGA applications by rebuilding and improving equivalent business capabilities with Java, Spring Boot, and Quarkus microservices for Standard Chartered Bank's digital transformation programme.</li>
             <li>Developed backend services supporting cost-center hierarchy management and asset mapping across distributed banking operations.</li>
             <li>Designed and implemented GraphQL and REST APIs following enterprise-standard architecture patterns.</li>
             <li>Leveraged Panache ORM with Oracle RDBMS for efficient persistence, data access, and query optimization.</li>
@@ -915,7 +995,7 @@
 
   <section id="education" class="wrap">
     <div class="section-head">
-      <span class="section-num">04</span>
+      <span class="section-num">05</span>
       <h2 class="section-title">Education</h2>
     </div>
     <div class="edu-card">
